@@ -85,56 +85,27 @@ function readLine() {
  */
 
 function gradingStudents(grades) {
-    console.log(grades)
-    
-    // Write your code here
-    let finalGrade = []
-    for(let i = 0; i < grades.length; i++){
-        // console.log(`Grade: ${increment += 1} `+grades[i])
-        
-        // Round up the grade to the nearest number multiple of 5
-        let multipleOfFive = Math.ceil(grades[i] / 5) * 5;
-        
-        let resultMinus = multipleOfFive - grades[i]
-        
-        if(grades[i] > 33){
-            if(resultMinus > 3 || resultMinus === 3){
-                finalGrade.push(grades[i])
-                // console.log("Do not round")
+    let finalGrade = [];
+    let multipleOfFive = 0
+    let resultMinus = 0
+    for (let i = 0; i < grades.length; i++) {
+        if (grades[i] < 38) {
+            finalGrade.push(grades[i]);
+        } 
+        else {
+            // Round up the grade to the nearest number multiple of 5
+            multipleOfFive = Math.ceil(grades[i] / 5) * 5;
+            resultMinus = multipleOfFive - grades[i];
+            if (resultMinus < 3) {
+                finalGrade.push(multipleOfFive);
+            } else {
+                finalGrade.push(grades[i]);
             }
-            else{
-                finalGrade.push(multipleOfFive)
-                // console.log("Round it")
-            }
-        }
-        else{
-            finalGrade.push(grades[i]) 
-            // console.log("Do not round")
         }
     }
-    console.log(finalGrade)
     return finalGrade;
-
 }
-// function gradingStudents(gradesString) {
-    
-//     let resultArray = [];
-//     for (let i = 0; i < grades.length; i++) {
-//         let multipleOfFive = Math.ceil(grades[i] / 5) * 5;
-//         let resultMinus = multipleOfFive - grades[i];
-        
-//         if (grades[i] > 33) {
-//             if (resultMinus < 3) {
-//                 resultArray.push(multipleOfFive);
-//             } else {
-//                 resultArray.push(grades[i]);
-//             }
-//         } else {
-//             resultArray.push(grades[i]);
-//         }
-//     }
-//     return resultArray;
-// }
+
 
 function main() {
     const ws = fs.createWriteStream(process.env.OUTPUT_PATH);
